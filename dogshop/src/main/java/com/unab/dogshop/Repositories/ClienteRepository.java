@@ -30,6 +30,8 @@ public interface ClienteRepository extends  CrudRepository<Cliente,String> {
     @Query(value = "select * from cliente where email=:email and clave=:clave",nativeQuery = true)
     public Integer logIn(@Param("email") String email,@Param("clave") String clave);
     */
+
+    
 }
 
     

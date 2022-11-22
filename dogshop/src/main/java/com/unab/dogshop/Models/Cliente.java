@@ -24,22 +24,23 @@ public class Cliente implements Serializable{
     @Id
     @GeneratedValue(generator ="UUID")
     @GenericGenerator(name ="UUID", strategy = "org.hibernate.id.UUIDGenerator")
-    @Column(name ="id",length = 20)
+    @Column(name ="id")
     private String id;
     
-    @Column(name ="nombre",length = 50)
+    @Column(name ="nombre")
     private String nombre;
 
-    @Column(name ="direccion",length = 50)
+    //@Column(nullable = false)
+    @Column(name ="direccion")
     private String direccion;
 
-    @Column(name ="email",length = 90)
+    @Column(name ="email")
     private String email;
 
-    @Column(name ="telefono",length = 90)
+    @Column(name ="telefono")
     private String telefono;
 
-    @Column(name ="clave",length = 10)
+    @Column(name ="clave")
     private String clave;
     
 /* 
