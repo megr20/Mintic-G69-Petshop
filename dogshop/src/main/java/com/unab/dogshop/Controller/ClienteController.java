@@ -3,7 +3,7 @@ package com.unab.dogshop.Controller;
 import com.unab.dogshop.Service.ClienteService;
 import com.unab.dogshop.Models.Cliente;
 import com.unab.dogshop.Models.Message;
-import com.unab.dogshop.Repositories.ClienteRepository;
+//import com.unab.dogshop.Repositories.ClienteRepository;
 import com.unab.dogshop.Security.Hash;
 import com.unab.dogshop.Utility.ConvertEntity;
 import com.unab.dogshop.Dto.ClienteDto;
@@ -39,7 +39,7 @@ public class ClienteController {
 
     @PostMapping("/create")
     @ResponseBody
-    public ResponseEntity<Message> agregar (@RequestBody Cliente cliente){
+    public ResponseEntity<Message> create (@RequestBody Cliente cliente){
         try {
             if (cliente.getNombre() == null) {
                 return new ResponseEntity<Message>(new Message(401, "El campo nombre es obligatorio"),
@@ -91,13 +91,14 @@ public class ClienteController {
         List<ClienteDto> clientesDto = new ArrayList<>();
         for (Cliente cliente : clientes) {
             ClienteDto clienteDto = new ClienteDto();
-            clienteDto.setId(cliente.getId());
+            /*clienteDto.setId(cliente.getId());
             clienteDto.setNombre(cliente.getNombre());
             clienteDto.setEmail(cliente.getEmail());
             clienteDto.setDireccion(cliente.getDireccion());
             clienteDto.setTelefono(cliente.getTelefono());
-            //clienteDto.setClave(cliente.getClave());
-            clientesDto.add(clienteDto);
+            //clienteDto.setClave(cliente.getClave());*/
+            //clientesDto.add(clienteDto);
+            clientesDto.add((ClienteDto) convertEntity.convert(cliente, clienteDto));
 
         }
 
