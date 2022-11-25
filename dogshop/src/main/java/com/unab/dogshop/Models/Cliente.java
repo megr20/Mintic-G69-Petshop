@@ -1,9 +1,12 @@
 package com.unab.dogshop.Models;
 import java.io.Serializable;
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
@@ -24,25 +27,28 @@ public class Cliente implements Serializable{
     @Id
     @GeneratedValue(generator ="UUID")
     @GenericGenerator(name ="UUID", strategy = "org.hibernate.id.UUIDGenerator")
-    @Column(name ="id")
+    @Column(name ="id", length = 5)
     private String id;
     
-    @Column(name ="nombre")
+    @Column(name ="nombre", length = 50)
     private String nombre;
 
     //@Column(nullable = false)
-    @Column(name ="direccion")
+    @Column(name ="direccion", length = 90)
     private String direccion;
 
-    @Column(name ="email")
+    @Column(name ="email", length = 90)
     private String email;
 
-    @Column(name ="telefono")
+    @Column(name ="telefono", length = 50)
     private String telefono;
 
-    @Column(name ="clave")
+    @Column(name ="clave", length = 50)
     private String clave;
-    
+
+    @OneToMany(mappedBy="cliente")
+    private List <Factura> facturas;
+
 /* 
     public Cliente(String idCliente, String nombre, 
       String direccion, String email, String telefono, String clave) {
