@@ -23,7 +23,7 @@ public class Categoria implements Serializable{
     @GeneratedValue(generator ="UUID")
     @GenericGenerator(name ="UUID", strategy = "org.hibernate.id.UUIDGenerator")
 
-    @Column(name ="id",length = 5)
+    @Column(name ="id",length = 50)
     private String id;
     
     @Column(name ="nombre",length = 50)

@@ -23,16 +23,16 @@ public class Producto implements Serializable{
     @GeneratedValue(generator ="UUID")
     @GenericGenerator(name ="UUID", strategy = "org.hibernate.id.UUIDGenerator")
 
-    @Column(name ="id",length = 5)
+    @Column(name ="id",length = 50)
     private String id;
     
     @Column(name ="descripcion",length = 90)
     private String descripcion;
 
-    @Column(name ="cantidad",length = 5)
+    @Column(name ="cantidad",length = 50)
     private String cantidad;
 
-    @Column(name ="valor",length = 5)
+    @Column(name ="valor",length = 50)
     private String valor;
 
     @ManyToOne

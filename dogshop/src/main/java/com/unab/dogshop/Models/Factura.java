@@ -1,11 +1,14 @@
 package com.unab.dogshop.Models;
 import java.io.Serializable;
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
@@ -23,7 +26,7 @@ public class Factura implements Serializable{
     @GeneratedValue(generator ="UUID")
     @GenericGenerator(name ="UUID", strategy = "org.hibernate.id.UUIDGenerator")
 
-    @Column(name ="id",length = 5)
+    @Column(name ="id",length = 50)
     private String id;
     
     @Column(name ="fecha",length = 50)
@@ -32,14 +35,17 @@ public class Factura implements Serializable{
     @Column(name ="descripcion",length = 90)
     private String descripcion;
 
-    @Column(name ="total",length = 5)
+    @Column(name ="total",length = 50)
     private String total;
 
     @ManyToOne
     @JoinColumn(name="id_cliente")
     private Cliente cliente;
 
-    @Override
+    @OneToMany(mappedBy="factura")
+    private List <Item> items;
+
+     @Override
     public String toString(){
       return "Factura [id=" + id + "fecha" 
       + fecha + "descripcion"+ descripcion + "total"+
