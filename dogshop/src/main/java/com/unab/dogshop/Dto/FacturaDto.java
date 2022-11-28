@@ -9,3 +9,12 @@ public class FacturaDto {
     private String total;
     private String cliente; 
 }
+
+@Data
+public class FacturaDto {
+    private String id;
+    private String descripcion;
+    private String fecha;
+    private String total;
+    private String cliente; 
+}

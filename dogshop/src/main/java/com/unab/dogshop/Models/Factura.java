@@ -39,7 +39,7 @@ public class Factura implements Serializable{
     private String total;
 
     @ManyToOne
-    @JoinColumn(name="id_cliente")
+    @JoinColumn(name = "idCliente")
     private Cliente cliente;
 
     @OneToMany(mappedBy="factura")
