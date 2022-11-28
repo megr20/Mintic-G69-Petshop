@@ -13,5 +13,3 @@ public class Message {
     private String message;
 }
 
-
-}
