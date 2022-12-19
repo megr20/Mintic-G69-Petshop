@@ -7,6 +7,7 @@ import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 //import Placeholder from 'react-bootstrap/Placeholder';
 import Container from 'react-bootstrap/Container';
+import Footer from "../Menu/Footer";
 
 import { Link, useParams } from 'react-router-dom';
 import Menu from '../Menu/Menu';
@@ -47,102 +48,35 @@ const URL = "http://localhost:8081/api/v1/producto/";
         }
       }
 
-   /*return ( 
+   return ( 
       <>
     <Container className>
     <Menu></Menu>
     <br></br>
-    <Row xs={1} md={4} className="g-4">
-      {Array.from({ length: 1 }).map((_, idx) => (
-        <Col>
-          <Card>
-            <Card.Img variant="top" src="holder.js/100px160" />
-            <Card.Body>
-              <Card.Title>Card title</Card.Title>
-              <Card.Text>
-              {DetalleProducto.map((prod)=>(
-            {prod.categoria}
-            {prod.id}
-            {prod.descripcion}
-            {prod.imagen}
-            {prod.valor}))}
-              </Card.Text>
-              <Link to="/DetalleProducto">
-          <Button variant="primary">Comprar</Button>
-          </Link>
-            </Card.Body>
-          </Card>
+    <Container className>
+      
+      <Row>
+      <Col xs={2}>
+           
         </Col>
-      ))}
-    </Row>
-    <br></br>  
-    <br></br>        
+        <Col xs={4}>
+            <img src= {process.env.PUBLIC_URL + "/images/" + detalle.id + ".jpg"} width="300" height="400"></img>
+        </Col>
+
+        <Col xs={6}>
+        <h3>{detalle.descripcion}</h3>
+        <h5>Valor: $ {detalle.valor}</h5>
+        <Button>Comprar</Button>
+        </Col>
+      </Row>
     </Container> 
+    </Container>
+    <Footer></Footer>
     </>
   );
-}*/
-return (
-  <>
-  <Menu name="DetallarProductos" />
-  <Container className="container">
-    <Link className="btn btn-outline-primary" to={`/ListarProductos`}>
-      <i className="fa-solid fa-user-plus"></i>
-    </Link>
-
-    <table className="table">
-      <thead className="responsive">  
-  <tr>
-
-  <th>id</th>
-  <th>Descripcion</th>
-  <th>Imagen</th>
-  <th>Valor</th>
-  <th>Detalle</th>
-  </tr>
-</thead>
-<tbody>
-  <tr>
-
-      <td>{detalle.id}</td>
-      <td>{detalle.descripcion}</td>
-      <td>{detalle.imagen}</td>
-      <td>{detalle.valor}</td>
-      
-
-      <td> <Link to={detalle.imagen}>Imagen del producto</Link> </td>            
-  </tr>
-  
-</tbody>
-</table>
-</Container>
-</>  );
 }
+
 export default DetallarProductos;
 
 
-/*
-    return (
-        <Container className>
-          <Menu></Menu>
-          <br></br>
-        <div className="d-flex justify-content-around">
-          <Card style={{ width: '18rem' }}>
-            <Card.Img variant="top" src="holder.js/100px180" />
-            <Card.Body>
-              <Card.Title>Producto 1</Card.Title>
-              <Card.Text>
-               Descripcion Producto
-              </Card.Text>
-              <Link to="/DetalleProducto">
-              <Button variant="primary">Detalle</Button>
-              </Link>
-            </Card.Body>
-          </Card>                        
-        </div> 
-        <br></br>  
-        <br></br>        
-        </Container>        
-      );
-    }
-  */
   

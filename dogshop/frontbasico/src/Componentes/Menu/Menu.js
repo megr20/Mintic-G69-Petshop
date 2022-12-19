@@ -9,7 +9,7 @@ import { useEffect } from "react";
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import {NavLink} from 'react-router-dom';
-import { NavDropdown } from "react-bootstrap";
+import { Col, NavDropdown, Row } from "react-bootstrap";
 //import {ListarProductosCategoria} from "../Producto/ListarProductosCategoria";
 import axios from "axios";
 import { useState } from "react";
@@ -20,10 +20,16 @@ let URL = 'http://localhost:8081/api/v1/categoria/list'
 
 const Menu = () => {
   const [Categoria, setCategoria] = useState([]);
+  console.log('Link clicked');
+/*
+  const handleClick = (event, message) => {
+    console.log('Link clicked');
+    console.log(message);
+  };*/
 
   useEffect(() => {
      getCategoria()
-  }, []);
+  },[]);
 
   const getCategoria = async() =>{
 
@@ -46,34 +52,51 @@ const Menu = () => {
   
     }
 
+
+
   return ( 
 
   <>
-  <Container className="justify-content-center">
-      <h1 className="justify-content-center">DogShop</h1>
-</Container>
-    <Container className="justify-content-center">
-    <Navbar className="justify-content-center" bg="primary" variant="dark" expand="lg">
-      <Container>
-        <Navbar.Brand href="/">Tienda Online</Navbar.Brand>
-        <Navbar.Toggle aria-controls="basic-navbar-nav" />
-        <Navbar.Collapse id="basic-navbar-nav">
-          <Nav className="me-auto">
-            <Link to={`/listarproductoscategoria/1`}>prueba1</Link>
-            <Nav.Link href="/">Home</Nav.Link>
-            <Nav.Link href="#link">Link</Nav.Link>
-            <NavDropdown title="Categorias" id="basic-nav-dropdown">
-            {
-            Categoria.map(dato=>(
-              <NavDropdown.Item as={NavLink} to={`/listarproductoscategoria/${dato.id}`}>{dato.nombre}</NavDropdown.Item>
-            ))}
-             </NavDropdown>
-          </Nav>
-        </Navbar.Collapse>
-      </Container>
-    </Navbar>
+  <br></br>  
+  <Container className="md={12} d-flex">
+  <Row>
   
-  </Container>
+  <Col className="md={2} d-flex">
+        <a className="navbar-brand " href="/">
+            <img src={process.env.PUBLIC_URL + "/images/Dogshop.jpg"} alt="Logo" width="150"  className="d-inline-block align-text-botton p-2"/>
+        </a>
+  </Col>    
+  <Col className="md={8}  ">
+    <nav className="navbar  " >
+        <Navbar style={{backgroundSize: "0", backgroundColor: "#d63384"}} variant="dark">
+        <Container className="md={10} d-flex">
+          <Navbar.Brand href=""></Navbar.Brand>
+          <Nav  className=" fs-4 " style={{fontWeight: 'bold'}} >
+            <Nav.Link href="/">Home</Nav.Link>
+            { Categoria.map(dato=>(
+                              <Nav.Link as={NavLink} to={`/listarproductoscategoria/${dato.id}`}>{dato.nombre}</Nav.Link>
+              ))
+            }
+          </Nav>
+        </Container>
+        <Container className=" md={2} d-flex">
+              <Row>
+                    {/* <button className="btn btn-outline-warning">Login</button> */}
+                    <Link className="btn btn-outline-dark" to="/login">Login</Link>
+                    {/* <button className="btn btn-outline-warning">Login</button> 
+                    <Link className="btn btn-outline-dark" to="/registro">Registro</Link>*/}
+                  </Row>
+        </Container>
+        
+      </Navbar>
+      <br />
+
+
+</nav>
+</Col>
+<Col className="md={2} d-flex"></Col>
+</Row>
+</Container>
   </>
  
   );

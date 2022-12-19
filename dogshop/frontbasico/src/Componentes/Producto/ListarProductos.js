@@ -6,6 +6,7 @@ import Button from 'react-bootstrap/Button';
 import DetallarProductos from "./DetallarProductos";
 import Menu from "../Menu/Menu";
 import { Container } from "react-bootstrap";
+import Footer from "../Menu/Footer";
 //import { useNavigate } from "react-router-dom";
 //import swal from "sweetalert"
 
@@ -17,10 +18,18 @@ import { Container } from "react-bootstrap";
 //import { useNavigate } from "react-router-dom";
 //import swal from "sweetalert"
 
+
+import { Producto } from "./Producto";
+//import swal from "sweetalert"
+
+//const URL = "http://localhost:8081/api/v1/producto/list";
+import Col from 'react-bootstrap/Col';
+import Row from 'react-bootstrap/Row';
+
 const URL = "http://localhost:8081/api/v1/producto/list";
 
 const ListarProductos = () => {
-    const [Producto, setProductos] = useState([]);
+    const [ProductosCat, setProductos] = useState([]);
 
     useEffect(() => {
        getProductos()
@@ -49,35 +58,36 @@ const ListarProductos = () => {
   
     return (
         <>
-        <Menu name="DetallarProductos" />
-        <Container className="container">
-          <Link className="btn btn-outline-primary" to={`/ListarProductos`}>
-            <i className="fa-solid fa-user-plus"></i>
-          </Link>
+        <Container className>
+        <Menu></Menu>
+        <br></br>
+        <Container className="col-sm-8">
+            <Row>
+            <Col xs={1}></Col>
+            <Col xs={10}>
+            <Row xs={1} md={1} className="g-1 p-3 ">
 
-          <table className="table">
-            <thead className="responsive">  
-        <tr>
-        <th>IdCtegoria</th>
-        <th>Descripcion</th>
-        <th>Imagen</th>
-        <th>Valor</th>
-        <th>Detalle</th>
-        </tr>
-    </thead>
-    <tbody>
-        {Producto.map((producto)=>(<tr>
-            <td>{producto.id}</td>
-            <td>{producto.descripcion}</td>
-            <td>{producto.imagen}</td>
-            <td>{producto.valor}</td>
-            <td> <a Link to ={producto.imagen}>Imagen del producto</a> </td>            
-        </tr>))}
-        
-    </tbody>
-  </table>
-  </Container>
-  </>  );
+            {ProductosCat.map((productoscat)=>(
+            <Producto
+                id = {productoscat.id}
+                descripcion = {productoscat.descripcion}
+                imagen = {productoscat.imagen}
+                valor = {productoscat.valor}
+            />    
+
+                ))}
+
+            </Row>
+            </Col>
+            <Col xs={1}></Col>
+        </Row>
+        </Container>
+        <Container className="col-sm-4"></Container>
+        <br></br>  
+        <br></br>        
+        </Container> 
+        <Footer></Footer>
+        </> );
   }
  
 export default ListarProductos;

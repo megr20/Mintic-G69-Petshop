@@ -15,6 +15,7 @@ import java.util.List;
 import java.lang.Exception;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 //import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -46,6 +47,7 @@ import com.unab.dogshop.Models.ERol;
 
 
 @RestController
+@CrossOrigin("*")
 @RequestMapping("/api/v1/cliente")
 public class ClienteController {
 

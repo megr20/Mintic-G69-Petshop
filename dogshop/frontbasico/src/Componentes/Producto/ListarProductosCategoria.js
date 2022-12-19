@@ -6,13 +6,15 @@ import { Link,useParams } from 'react-router-dom';
 //import Button from 'react-bootstrap/Button';
 //import DetallarProductos from "./DetallarProductos";
 import Menu from "../Menu/Menu";
-import { Container } from "react-bootstrap";
+import { Container, Card } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
+import { Producto } from "./Producto";
 //import swal from "sweetalert"
 
 //const URL = "http://localhost:8081/api/v1/producto/list";
-//import Col from 'react-bootstrap/Col';
-//import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
+import Row from 'react-bootstrap/Row';
+import Footer from "../Menu/Footer";
 
 //import swal from "sweetalert"
 
@@ -22,7 +24,7 @@ let URL = 'http://localhost:8081/api/v1/producto/list/'
 
 
 
-const ListarProductosCategoria = () => {
+const ListarProductosCategoria = (props) => {
     //let idCategoria=1;
     let  {idCategoria} = useParams();
     const [ProductosCat, setProductosCat] = useState([]);
@@ -50,45 +52,43 @@ const ListarProductosCategoria = () => {
         }
     
       };
+
       useEffect(() => {
         getProductosCat();
-  }, []);
+      }, [idCategoria]);
   
-    return (
-        <>
-        <Menu name="DetallarProductos" />
-        <Container className="container">
-          <Link className="btn btn-outline-primary" to={`/ListarProductos`}>
-            <i className="fa-solid fa-user-plus"></i>
-          </Link>
-<h2>{idCategoria}</h2>
-          <table className="table">
-            <thead className="responsive">  
-        <tr>
+    return ( 
+      <>
+        <Container className>
+        <Menu></Menu>
+        <br></br>
+        <Container className="col-sm-8">
+          <Row>
+            <Col xs={1}></Col>
+            <Col xs={10}>
+            <Row xs={1} md={1} className="g-1 p-3 ">
 
-        <th>id</th>
-        <th>Descripcion</th>
-        <th>Imagen</th>
-        <th>Valor</th>
-        <th>Detalle</th>
-        </tr>
-    </thead>
-    <tbody>
-        {ProductosCat.map((productoscat)=>(<tr>
+            {ProductosCat.map((productoscat)=>(
+            <Producto
+                        id = {productoscat.id}
+                        descripcion = {productoscat.descripcion}
+                        imagen = {productoscat.imagen}
+                        valor = {productoscat.valor}
+            />    
 
-            <td>{productoscat.id}</td>
-            <td><Link to={`/detallarproductos/${productoscat.id}`}>{productoscat.descripcion}</Link></td>
-            <td>{productoscat.imagen}</td>
-            <td>{productoscat.valor}</td>
-            
+            ))}
+            </Row>
+            </Col>
+            <Col xs={1}></Col>
+          </Row>
+        </Container>
+    <br></br>  
+    <br></br>        
+    </Container> 
+    <Footer></Footer>
+    </>
+  );
 
-            <td> <a Link to={productoscat.imagen}>Imagen del producto</a> </td>            
-        </tr>))}
-        
-    </tbody>
-  </table>
-  </Container>
-  </>  );
   }
  
 export default ListarProductosCategoria;

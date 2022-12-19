@@ -3,6 +3,11 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import swal from "sweetalert"
 
+import Menu from "../Menu/Menu";
+import Footer from "../Menu/Footer";
+
+import { Container } from "react-bootstrap";
+
 const URL = "http://localhost:8081/api/v1/cliente/login";
 
 
@@ -26,7 +31,7 @@ const navigate = useNavigate();
         .then((value)=>{
             sessionStorage.setItem("user",login.data.user)
             sessionStorage.setItem("key",login.data.key)
-            navigate("/menu")
+            navigate("/")
         });
         
     } catch (error) {
@@ -37,7 +42,10 @@ const navigate = useNavigate();
   }
 
   return (
-    <>
+    <>        <Container className>
+    <Menu></Menu>
+    <br></br>
+    <Container className="">
       <div className="container col-3">
         <div className="tab-content">
           <div
@@ -78,6 +86,9 @@ const navigate = useNavigate();
           </div>
         </div>
       </div>
+      </Container>
+      </Container>
+      <Footer></Footer>
     </>
   );
 };
